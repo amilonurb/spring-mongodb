@@ -2,18 +2,25 @@ package br.com.brlima.springmongo.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.brlima.springmongo.domain.User;
 import br.com.brlima.springmongo.repository.UserRepository;
+import br.com.brlima.springmongo.services.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository repository;
+
+    public User find(String id) {
+        Optional<User> user = repository.findById(id);
+        return user.orElseThrow(() -> new ObjectNotFoundException("User não encontrado"));
+    }
 
     public List<User> findAll() {
         return repository.findAll();
