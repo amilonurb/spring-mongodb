@@ -1,4 +1,4 @@
-package br.com.brlima.springmongo.resources;
+package br.com.brlima.springmongo.resources.exception;
 
 import java.io.Serializable;
 

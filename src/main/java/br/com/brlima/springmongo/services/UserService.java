@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.brlima.springmongo.domain.User;
+import br.com.brlima.springmongo.dto.UserDTO;
 import br.com.brlima.springmongo.repository.UserRepository;
 import br.com.brlima.springmongo.services.exception.ObjectNotFoundException;
 
@@ -34,7 +35,16 @@ public class UserService {
         return repository.saveAll(Arrays.asList(users));
     }
 
+    public void delete(String id) {
+        User user = this.find(id);
+        repository.delete(user);
+    }
+
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    public User fromDTO(UserDTO dto) {
+        return new User(dto.getId(), dto.getName(), dto.getEmail());
     }
 }
