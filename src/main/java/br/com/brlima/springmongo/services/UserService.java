@@ -1,5 +1,6 @@
 package br.com.brlima.springmongo.services;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,17 @@ public class UserService {
 
     public List<User> findAll() {
         return repository.findAll();
+    }
+
+    public User insert(User user) {
+        return repository.save(user);
+    }
+
+    public List<User> insert(User... users) {
+        return repository.saveAll(Arrays.asList(users));
+    }
+
+    public void deleteAll() {
+        repository.deleteAll();
     }
 }
