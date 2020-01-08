@@ -1,5 +1,6 @@
 package br.com.brlima.springmongo.services;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +37,9 @@ public class PostService {
 
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    public List<Post> search(String text, LocalDate min, LocalDate max) {
+        return repository.search(text, min, max.plusDays(1));
     }
 }
