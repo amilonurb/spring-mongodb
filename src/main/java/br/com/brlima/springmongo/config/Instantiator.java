@@ -39,15 +39,15 @@ public class Instantiator implements CommandLineRunner {
         AuthorDTO authorAlex = new AuthorDTO(alex);
         AuthorDTO authorBob = new AuthorDTO(bob);
 
-        Post post1 = new Post(null, LocalDate.parse("21/03/2018", formatter), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", authorMaria);
+        Post post1 = new Post(null, LocalDate.from(formatter.parse("21/03/2018")), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", authorMaria);
 
         post1.getComments().addAll(Arrays.asList(//
-                new CommentDTO("Boa viagem mano!", LocalDate.parse("21/03/2018"), authorAlex), //
-                new CommentDTO("Aproveite!", LocalDate.parse("22/03/2018"), authorBob)));
+                new CommentDTO("Boa viagem mano!", LocalDate.from(formatter.parse("21/03/2018")), authorAlex), //
+                new CommentDTO("Aproveite!", LocalDate.from(formatter.parse("22/03/2018")), authorBob)));
 
-        Post post2 = new Post(null, LocalDate.parse("23/03/2018", formatter), "Bom dia", "Acordei feliz hoje!", authorMaria);
+        Post post2 = new Post(null, LocalDate.from(formatter.parse("23/03/2018")), "Bom dia", "Acordei feliz hoje!", authorMaria);
 
-        post2.getComments().add(new CommentDTO("Tenha um ótimo dia!", LocalDate.parse("23/03/2018"), authorAlex));
+        post2.getComments().add(new CommentDTO("Tenha um ótimo dia!", LocalDate.from(formatter.parse("23/03/2018")), authorAlex));
 
         postService.insert(post1, post2);
 
