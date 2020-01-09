@@ -1,6 +1,8 @@
 package br.com.brlima.springmongo.resources;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +43,8 @@ public class PostResource {
             @RequestParam(value = "max", defaultValue = "") String max) {
 
         String textDecoded = URLUtils.decodeParam(text);
-        LocalDate minDate = URLUtils.toLocalDate(min, LocalDate.MIN);
-        LocalDate maxDate = URLUtils.toLocalDate(max, LocalDate.MAX);
+        LocalDate minDate = URLUtils.toLocalDate(min, new Date(0L).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        LocalDate maxDate = URLUtils.toLocalDate(max, LocalDate.now());
 
         List<Post> posts = service.search(textDecoded, minDate, maxDate);
         return ResponseEntity.ok().body(posts);

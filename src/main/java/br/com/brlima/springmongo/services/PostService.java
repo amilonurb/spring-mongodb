@@ -40,6 +40,6 @@ public class PostService {
     }
 
     public List<Post> search(String text, LocalDate min, LocalDate max) {
-        return repository.search(text, min, max.plusDays(1));
+        return repository.search(text, min, max);
     }
 }
